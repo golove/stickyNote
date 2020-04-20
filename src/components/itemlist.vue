@@ -1,6 +1,11 @@
 <template>
-  <div class="itemlist">
-    <item v-for="item in filterData()" :key=" item.id" :item="item" />
+  <div id="itemlist">
+    <div class="itemlist">
+      <item v-show="index%2==0" v-for="(item,index) in filterData()" :key=" item.id" :item="item" />
+    </div>
+    <div class="itemlist">
+      <item v-show="index%2==1" v-for="(item,index) in filterData()" :key=" item.id" :item="item" />
+    </div>
   </div>
 </template>
 
@@ -26,13 +31,24 @@ export default class itemlist extends Vue {
 </script>
 
 <style>
-.itemlist {
-  width: 1250px;
+#itemlist {
   position: absolute;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
   right: 0;
   left: 0;
-  top: 125px;
+  top: 45px;
   height: auto;
   margin: auto;
+  width: 1250px;
+}
+.itemlist {
+  display: flex;
+  /* justify-content: space-between; */
+  flex-direction: column;
+  /* min-height: 100vh; */
+  flex-wrap: wrap;
+  width: 625px;
 }
 </style>

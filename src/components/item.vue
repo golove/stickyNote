@@ -1,6 +1,6 @@
 <template>
   <div class="item">
-    <span>{{item.title}}</span>
+    <h2>{{item.title}}</h2>
     <p>{{item.content}}</p>
     <span>分类:{{$store.state.actionHelper.getCategory(item.categoryId)}}</span>
     <button @click="remove">删除</button>

@@ -1,28 +1,33 @@
 
 <template>
   <div class="toolbar">
-    <h2>toolbar</h2>
+    <h2>便签</h2>
     <div class="btn">
       <button @click="showInput">新增</button>
-
-      <ul>
-        <li @click="$store.commit('setFilterId',-1)">
+      <div class="category1">
+        <button @click="cateflag=!cateflag">
           全部
           <span>{{doFliter(-1)}}</span>
-        </li>
-        <li @click="$store.commit('setFilterId',0)">
-          工作
-          <span>{{doFliter(0)}}</span>
-        </li>
-        <li @click="$store.commit('setFilterId',1)">
-          生活
-          <span>{{doFliter(1)}}</span>
-        </li>
-        <li @click="$store.commit('setFilterId',2)">
-          学习
-          <span>{{doFliter(2)}}</span>
-        </li>
-      </ul>
+        </button>
+        <ul v-show="cateflag">
+          <li @click="selectCate(-1)">
+            全部
+            <span>{{doFliter(-1)}}</span>
+          </li>
+          <li @click="selectCate( 0)">
+            工作
+            <span>{{doFliter(0)}}</span>
+          </li>
+          <li @click="selectCate( 1)">
+            生活
+            <span>{{doFliter(1)}}</span>
+          </li>
+          <li @click="selectCate( 2)">
+            学习
+            <span>{{doFliter(2)}}</span>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -32,6 +37,7 @@ import { Component, Vue } from "vue-property-decorator";
 import ItemData from "../model/ItemData";
 @Component
 export default class toolbar extends Vue {
+  cateflag: boolean = false;
   showInput() {
     this.$store.commit("setTransItem", new ItemData(-1, 0));
   }
@@ -44,41 +50,52 @@ export default class toolbar extends Vue {
       }).length;
     }
   }
+  selectCate(id: number): void {
+    this.cateflag = false;
+    this.$store.commit("setFilterId", id);
+  }
 }
 </script>
 
 <style>
-h2,
-ul {
-  padding: 0;
-  margin: 0;
-}
 .btn {
   display: flex;
+  height: 100%;
+  color: rgb(235, 221, 221);
+}
+.btn button {
+  height: 100%;
+  width: 65px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 0px;
+}
+ul li span {
+  display: inline-block;
+  /* width: 20px;
+  height: 20px; */
+  padding: 2px 8px;
+  border-radius: 50%;
+  background: cadetblue;
+  margin-left: 25px;
 }
 .toolbar {
   display: flex;
   height: 35px;
-  padding: 10px;
+  /* padding: 10px; */
   width: 1250px;
-  background: cyan;
+  background: teal;
   position: absolute;
   right: 0;
   left: 0;
   margin: auto;
   justify-content: space-around;
 }
-button {
-  color: white;
-  height: 35px;
-  width: 65px;
-  margin: 0 8px;
-  border-radius: 8px;
-  background: plum;
-  cursor: pointer;
-  border: none;
+
+.category1 {
+  position: relative;
+  z-index: 2;
 }
-button:hover {
-  background: palevioletred;
+.category1 ul li:first-child {
+  border-bottom: 1px solid rgb(20, 179, 179);
 }
 </style>

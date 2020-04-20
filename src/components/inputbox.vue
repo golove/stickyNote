@@ -1,14 +1,18 @@
 <template>
   <div class="inputbox">
     <form>
-      <span>分类:{{$store.state.actionHelper.getCategory(item.categoryId)}}</span>
-      <ul>
-        <li @click="item.categoryId = 0">工作</li>
-        <li @click="item.categoryId = 1">生活</li>
-        <li @click="item.categoryId = 2">学习</li>
-      </ul>
-      <input type="text" placeholder="title" v-model="item.title" />
-      <textarea v-model="item.content" type="text"></textarea>
+      <input type="text" placeholder="请输入标题" v-model="item.title" />
+      <div class="category">
+        <span
+          @click="cateflag=!cateflag"
+        >分类:{{$store.state.actionHelper.getCategory(item.categoryId)}}</span>
+        <ul v-show="cateflag">
+          <li @click="selectCate( 0)">工作</li>
+          <li @click="selectCate( 1)">生活</li>
+          <li @click="selectCate( 2)">学习</li>
+        </ul>
+      </div>
+      <textarea placeholder="请输入内容" v-model="item.content" type="text"></textarea>
     </form>
     <button @click="submit">提交</button>
     <button @click="close">关闭</button>
@@ -20,11 +24,15 @@ import { Vue, Component } from "vue-property-decorator";
 import ItemData from "../model/ItemData";
 @Component
 export default class inputbox extends Vue {
+  cateflag: boolean = false;
   item: ItemData = new ItemData(-1, 0);
   constructor() {
     super();
   }
-
+  selectCate(id: number): void {
+    this.cateflag = false;
+    this.item.categoryId = id;
+  }
   created(): void {
     this.item = this.$store.state.transItem;
   }
@@ -51,9 +59,9 @@ export default class inputbox extends Vue {
   }
 }
 </script>
-
 <style>
 .inputbox {
+  border-radius: 12px;
   position: sticky;
   top: 60px;
   right: 0;
@@ -62,27 +70,24 @@ export default class inputbox extends Vue {
   z-index: 3;
   background: rgb(231, 223, 195);
   padding: 16px;
-  width: 900px;
+  width: 700px;
+  box-shadow: rgb(49, 49, 49) 5px 5px 15px;
 }
-input {
-  width: 680px;
-  background: rgba(255, 255, 255, 0.6);
-}
-textarea {
-  width: 680px;
-  height: 350px;
-  background: rgba(255, 255, 255, 0.6);
-}
-ul li {
-  width: 75px;
+
+.category {
+  margin: 5px 0;
+  position: relative;
+  width: 90px;
+  padding: 4px 6px;
+  font-size: 20px;
+  background: rgb(8, 153, 153);
   border-radius: 8px;
-  margin: 0 2px;
-  padding: 8px;
+  color: rgb(235, 217, 217);
+  height: auto;
   cursor: pointer;
-  background: plum;
-  display: inline-block;
+  /* border: 1px solid palevioletred; */
 }
-ul li:hover {
-  background: palevioletred;
+.category:hover {
+  background: rgb(20, 179, 179);
 }
 </style>
