@@ -1,10 +1,19 @@
 <template>
   <div class="item">
-    <h2>{{item.title}}</h2>
+    <div class="titlestle">
+      <h2>{{item.title}}</h2>
+      <span>
+        <button @click="remove">删除</button>
+        <button @click="editData(item)">修改</button>
+      </span>
+    </div>
+
+    <div>
+      <span>分类:{{$store.state.actionHelper.getCategory(item.categoryId)}}</span>
+      <span style="marginLeft:8px">{{item.createTime}}</span>
+    </div>
+
     <p>{{item.content}}</p>
-    <span>分类:{{$store.state.actionHelper.getCategory(item.categoryId)}}</span>
-    <button @click="remove">删除</button>
-    <button @click="editData(item)">修改</button>
   </div>
 </template>
 
@@ -33,5 +42,13 @@ export default class item extends Vue {
   padding: 8px 14px;
   background: teal;
   color: white;
+}
+.titlestle {
+  display: flex;
+  justify-content: space-between;
+}
+.titlestle span {
+  display: flex;
+  justify-content: end;
 }
 </style>
