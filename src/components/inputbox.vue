@@ -14,8 +14,8 @@
       </div>
       <textarea placeholder="请输入内容" v-model="item.content" type="text"></textarea>
     </form>
-    <button @click="submit">提交</button>
-    <button @click="close">关闭</button>
+    <button class="buttoninput" @click="submit">提交</button>
+    <button class="buttoninput" @click="close">关闭</button>
   </div>
 </template>
 
@@ -60,18 +60,28 @@ export default class inputbox extends Vue {
 }
 </script>
 <style>
+.buttoninput {
+  height: 35px;
+  width: 65px;
+  margin: 0 8px;
+  background: rgb(8, 153, 153);
+}
+.buttoninput:hover {
+  background: rgb(20, 179, 179);
+}
+
 .inputbox {
-  border-radius: 12px;
-  position: sticky;
+  /* border-radius: 12px; */
+  position: fixed;
   top: 60px;
   right: 0;
   left: 0;
   margin: auto;
   z-index: 3;
-  background: rgb(231, 223, 195);
+  background: rgba(255, 255, 255, 0.6);
   padding: 16px;
   width: 700px;
-  box-shadow: rgb(49, 49, 49) 5px 5px 15px;
+  box-shadow: rgba(49, 49, 49, 0.3) 0.5px 0.5px 5px;
 }
 
 .category {
@@ -79,9 +89,9 @@ export default class inputbox extends Vue {
   position: relative;
   width: 90px;
   padding: 4px 6px;
-  font-size: 20px;
-  background: rgb(8, 153, 153);
-  border-radius: 8px;
+  font-size: 18px;
+  background: rgba(8, 153, 153, 1);
+  /* border-radius: 8px; */
   color: rgb(235, 217, 217);
   height: auto;
   cursor: pointer;

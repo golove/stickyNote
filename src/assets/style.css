@@ -1,16 +1,18 @@
 button {
-  color: white;
-  height: 35px;
-  width: 65px;
-  margin: 0 8px;
-  border-radius: 8px;
-  background: rgb(8, 153, 153);
   cursor: pointer;
   border: none;
+  color: rgba(255, 255, 255, 0.6);
 }
 
-button:hover {
-  background: rgb(20, 179, 179);
+.buttonicon {
+  margin: 0 8px;
+  background: rgba(8, 153, 153, 0);
+  transition: color .3s ease;
+}
+
+.buttonicon:hover {
+  color: orange;
+
 }
 
 h2,
@@ -45,15 +47,43 @@ input {
   height: 35px;
   font-size: 21px;
   border: none;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid rgb(8, 153, 153);
   background: rgba(255, 255, 255, 0);
 }
 
 textarea {
   font-size: 18px;
   width: 700px;
+  max-width: 700px;
   height: 350px;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0);
   border: none;
   margin-bottom: 5px;
+}
+
+.list-complete-item {
+  transition: all 1s;
+  /* display: inline-block; */
+  /* margin-right: 10px; */
+}
+
+.list-complete-enter,
+.list-complete-leave-to
+
+/* .list-complete-leave-active for below version 2.1.8 */
+  {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+.list-complete-leave-active {
+  position: absolute;
+}
+
+.blurstyle {
+  filter: blur(23px);
+}
+
+.noblur {
+  transition: filter 1s ease;
 }

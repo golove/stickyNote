@@ -1,10 +1,26 @@
 <template>
   <div id="itemlist">
     <div class="itemlist">
-      <item v-show="index%2==0" v-for="(item,index) in filterData()" :key=" item.id" :item="item" />
+      <transition-group name="list-complete">
+        <item
+          class="list-complete-item"
+          v-show="index%2==0"
+          v-for="(item,index) in filterData()"
+          :key=" item.id"
+          :item="item"
+        />
+      </transition-group>
     </div>
     <div class="itemlist">
-      <item v-show="index%2==1" v-for="(item,index) in filterData()" :key=" item.id" :item="item" />
+      <transition-group name="list-complete">
+        <item
+          class="list-complete-item"
+          v-show="index%2==1"
+          v-for="(item,index) in filterData()"
+          :key=" item.id"
+          :item="item"
+        />
+      </transition-group>
     </div>
   </div>
 </template>
@@ -38,7 +54,7 @@ export default class itemlist extends Vue {
   flex-wrap: wrap;
   right: 0;
   left: 0;
-  top: 45px;
+  top: 50px;
   height: auto;
   margin: auto;
   width: 1250px;

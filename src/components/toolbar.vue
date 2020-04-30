@@ -84,11 +84,13 @@ ul li span {
   /* padding: 10px; */
   width: 1250px;
   background: teal;
-  position: absolute;
+  position: fixed;
   right: 0;
   left: 0;
   margin: auto;
   justify-content: space-around;
+  z-index: 2;
+  /* border: 12px solid white; */
 }
 
 .category1 {

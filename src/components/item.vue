@@ -3,8 +3,22 @@
     <div class="titlestle">
       <h2>{{item.title}}</h2>
       <span>
-        <button @click="remove">删除</button>
-        <button @click="editData(item)">修改</button>
+        <button class="buttonicon" @click="editData(item)">
+          <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+            <path
+              fill="currentColor"
+              d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z"
+            />
+          </svg>
+        </button>
+        <button class="buttonicon" @click="remove">
+          <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+            <path
+              fill="currentColor"
+              d="M20.37,8.91L19.37,10.64L7.24,3.64L8.24,1.91L11.28,3.66L12.64,3.29L16.97,5.79L17.34,7.16L20.37,8.91M6,19V7H11.07L18,11V19A2,2 0 0,1 16,21H8A2,2 0 0,1 6,19Z"
+            />
+          </svg>
+        </button>
       </span>
     </div>
 
@@ -42,6 +56,23 @@ export default class item extends Vue {
   padding: 8px 14px;
   background: teal;
   color: white;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+.item:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 0px solid;
+  border-color: rgb(8, 153, 153) #fff;
+  -webkit-transition: border 0.5s ease;
+}
+
+.item:hover:before {
+  border-left-width: 40px;
+  border-bottom-width: 30px;
 }
 .titlestle {
   display: flex;

@@ -1,8 +1,10 @@
 <template>
   <div id="app">
     <toolbar />
-    <itemlist />
-    <inputbox v-if="$store.state.showInput" />
+    <transition name="list-complete">
+      <inputbox class="list-complete-item" v-if="$store.state.showInput" />
+    </transition>
+    <itemlist class="noblur" :class="$store.state.showInput?'blurstyle':''" />
   </div>
 </template>
 
