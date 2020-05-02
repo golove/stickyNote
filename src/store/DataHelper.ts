@@ -37,7 +37,7 @@ class DataHelper {
         let obj: object = {
             title: conStr.title,
             categoryId: conStr.categoryId,
-            conten: conStr.content,
+            content: conStr.content,
             createTime: conStr.createTime,
             [this.primaryKey]: arr.length > 0 ? arr[arr.length - 1][this.primaryKey] + 1 : 1
         }

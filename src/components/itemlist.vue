@@ -1,27 +1,13 @@
 <template>
   <div id="itemlist">
-    <div class="itemlist">
-      <transition-group name="list-complete">
-        <item
-          class="list-complete-item"
-          v-show="index%2==0"
-          v-for="(item,index) in filterData()"
-          :key=" item.id"
-          :item="item"
-        />
-      </transition-group>
-    </div>
-    <div class="itemlist">
-      <transition-group name="list-complete">
-        <item
-          class="list-complete-item"
-          v-show="index%2==1"
-          v-for="(item,index) in filterData()"
-          :key=" item.id"
-          :item="item"
-        />
-      </transition-group>
-    </div>
+    <transition-group class="itemlist" name="list-complete">
+      <item
+        class="list-complete-item listitem"
+        v-for="(item) in filterData()"
+        :key=" item.id"
+        :item="item"
+      />
+    </transition-group>
   </div>
 </template>
 
@@ -38,9 +24,11 @@ export default class itemlist extends Vue {
     if (this.$store.state.filterId == -1) {
       return this.demoArr;
     } else {
-      return this.$store.state.actionHelper.demoList.filter((e: any) => {
-        return e.categoryId === this.$store.state.filterId;
-      });
+      return this.$store.state.actionHelper.demoList.filter(
+        (e: any, index: number) => {
+          return e.categoryId === this.$store.state.filterId;
+        }
+      );
     }
   }
 }
@@ -60,11 +48,9 @@ export default class itemlist extends Vue {
   width: 1250px;
 }
 .itemlist {
-  display: flex;
-  /* justify-content: space-between; */
-  flex-direction: column;
-  /* min-height: 100vh; */
-  flex-wrap: wrap;
-  width: 625px;
+  width: 1250px;
+  column-count: auto;
+  column-width: 580px;
+  column-gap: 1em;
 }
 </style>

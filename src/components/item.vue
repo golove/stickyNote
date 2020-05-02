@@ -51,7 +51,7 @@ export default class item extends Vue {
 <style>
 .item {
   margin: 5px;
-  width: 585px;
+  width: 580px;
   display: inline-block;
   padding: 8px 14px;
   background: teal;

@@ -6,8 +6,8 @@
       <button @click="showInput">新增</button>
       <div class="category1">
         <button @click="cateflag=!cateflag">
-          全部
-          <span>{{doFliter(-1)}}</span>
+          {{$store.state.filterId===-1?'全部':$store.state.actionHelper.getCategory($store.state.filterId)}}
+          <span>{{doFliter($store.state.filterId)}}</span>
         </button>
         <ul v-show="cateflag">
           <li @click="selectCate(-1)">
