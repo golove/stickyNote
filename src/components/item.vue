@@ -75,7 +75,6 @@ export default class item extends Vue {
   -webkit-column-break-inside: avoid;
   margin-bottom: 1em;
   break-inside: avoid;
-  max-width: 500px;
   padding: 8px 14px;
   background: teal;
   color: white;
