@@ -6,12 +6,14 @@ class ItemData {
     title!: string;
     content!: string;
     createTime!: string;
+    archive!: boolean;
 
-    constructor(id: number = -1, categoryId: Category = -1, title: string = "", content: string = "") {
+    constructor(id: number = -1, categoryId: Category = -1, title: string = "", content: string = "", archive: boolean = false) {
         this.id = id;
         this.categoryId = categoryId;
         this.title = title;
         this.content = content;
+        this.archive = archive;
         this.createTime = this.timeToString(Date.now());
     }
     timeToString(time: number): string {

@@ -1,14 +1,12 @@
 <template>
-  <div id="itemlist">
-    <transition-group class="itemlist" name="list-complete">
-      <item
-        class="list-complete-item listitem"
-        v-for="(item) in filterData()"
-        :key=" item.id"
-        :item="item"
-      />
-    </transition-group>
-  </div>
+  <transition-group class="itemlist" name="list-complete" tag="div">
+    <item
+      class="listitem list-complete-item"
+      v-for="(item) in filterData()"
+      :key=" item.id"
+      :item="item"
+    />
+  </transition-group>
 </template>
 
 <script lang="ts">
@@ -22,11 +20,19 @@ export default class itemlist extends Vue {
   demoArr: Array<ItemData> = this.$store.state.actionHelper.demoList;
   filterData() {
     if (this.$store.state.filterId == -1) {
-      return this.demoArr;
+      return this.demoArr.filter((e: any) => {
+        return e.archive === false;
+      });
+    } else if (this.$store.state.filterId == -2) {
+      return this.$store.state.actionHelper.demoList.filter((e: any) => {
+        return e.archive === true;
+      });
     } else {
       return this.$store.state.actionHelper.demoList.filter(
         (e: any, index: number) => {
-          return e.categoryId === this.$store.state.filterId;
+          return (
+            e.archive === false && e.categoryId === this.$store.state.filterId
+          );
         }
       );
     }
@@ -35,22 +41,20 @@ export default class itemlist extends Vue {
 </script>
 
 <style>
-#itemlist {
+.itemlist {
   position: absolute;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
   right: 0;
   left: 0;
-  top: 50px;
-  height: auto;
+  top: 55px;
   margin: auto;
-  width: 1250px;
-}
-.itemlist {
-  width: 1250px;
+  height: auto;
+  max-width: 1600px;
+  -moz-column-count: auto;
+  -webkit-column-count: auto;
   column-count: auto;
-  column-width: 580px;
+  column-width: 480px;
+  -moz-column-gap: 1em;
+  -webkit-column-gap: 1em;
   column-gap: 1em;
 }
 </style>

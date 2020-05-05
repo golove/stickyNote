@@ -3,7 +3,19 @@
     <div class="titlestle">
       <h2>{{item.title}}</h2>
       <span>
-        <button class="buttonicon" @click="editData(item)">
+        <button :title="item.archive?'取消归档':'归档'" class="buttonicon" @click="archive(item)">
+          <svg v-if="item.archive" style="width:24px;height:24px" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M4 21H20V8H4M14 15V18H10V15H7L12 10L17 15M3 3H21V7H3" />
+          </svg>
+
+          <svg v-else style="width:24px;height:24px" viewBox="0 0 24 24">
+            <path
+              fill="currentColor"
+              d="M3 3H21V7H3V3M4 21V8H20V21H4M14 14V11H10V14H7L12 19L17 14H14Z"
+            />
+          </svg>
+        </button>
+        <button title="修改" class="buttonicon" @click="editData(item)">
           <svg style="width:24px;height:24px" viewBox="0 0 24 24">
             <path
               fill="currentColor"
@@ -11,7 +23,8 @@
             />
           </svg>
         </button>
-        <button class="buttonicon" @click="remove">
+
+        <button title="删除" class="buttonicon" @click="remove">
           <svg style="width:24px;height:24px" viewBox="0 0 24 24">
             <path
               fill="currentColor"
@@ -41,6 +54,15 @@ export default class item extends Vue {
     let newitem = JSON.parse(JSON.stringify(this.item));
     this.$store.commit("setTransItem", newitem);
   }
+  archive(item: ItemData) {
+    if (item.archive) {
+      item.archive = false;
+    } else {
+      item.archive = true;
+    }
+
+    this.$store.state.actionHelper.editData(item);
+  }
   remove(): void {
     if (!confirm(`确认要删除<${this.item.title}>的笔记吗？`)) return;
     this.$store.state.actionHelper.remove(this.item.id);
@@ -50,9 +72,10 @@ export default class item extends Vue {
 
 <style>
 .item {
-  margin: 5px;
-  width: 580px;
-  display: inline-block;
+  -webkit-column-break-inside: avoid;
+  margin-bottom: 1em;
+  break-inside: avoid;
+  max-width: 500px;
   padding: 8px 14px;
   background: teal;
   color: white;
@@ -67,7 +90,7 @@ export default class item extends Vue {
   left: 0;
   border: 0px solid;
   border-color: rgb(8, 153, 153) #fff;
-  -webkit-transition: border 0.5s ease;
+  transition: border 0.5s ease;
 }
 
 .item:hover:before {

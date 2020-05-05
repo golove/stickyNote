@@ -39,6 +39,7 @@ class DataHelper {
             categoryId: conStr.categoryId,
             content: conStr.content,
             createTime: conStr.createTime,
+            archive: conStr.archive,
             [this.primaryKey]: arr.length > 0 ? arr[arr.length - 1][this.primaryKey] + 1 : 1
         }
         // 3.自动生成主键

@@ -24,6 +24,7 @@ class ActionHelper {
             item.title = e.title;
             item.createTime = e.createTime;
             item.content = e.content;
+            item.archive = e.archive;
             return item
         })
         return arr
@@ -46,6 +47,7 @@ class ActionHelper {
             editItem.categoryId = item.categoryId;
             editItem.title = item.title;
             editItem.content = item.content;
+            editItem.archive = item.archive;
             this.dataHelper.save(this.demoList)
         }
     }

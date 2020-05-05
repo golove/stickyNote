@@ -3,10 +3,10 @@
   <div class="toolbar">
     <h2>便签</h2>
     <div class="btn">
-      <button @click="showInput">新增</button>
+      <button @click="showInput">新建</button>
       <div class="category1">
         <button @click="cateflag=!cateflag">
-          {{$store.state.filterId===-1?'全部':$store.state.actionHelper.getCategory($store.state.filterId)}}
+          {{$store.state.filterId===-1?'全部':$store.state.filterId===-2?'归档':$store.state.actionHelper.getCategory($store.state.filterId)}}
           <span>{{doFliter($store.state.filterId)}}</span>
         </button>
         <ul v-show="cateflag">
@@ -26,6 +26,10 @@
             学习
             <span>{{doFliter(2)}}</span>
           </li>
+          <li @click="selectCate( -2)">
+            归档
+            <span>{{doFliter(-2)}}</span>
+          </li>
         </ul>
       </div>
     </div>
@@ -43,13 +47,20 @@ export default class toolbar extends Vue {
   }
   doFliter(id: number) {
     if (id == -1) {
-      return this.$store.state.actionHelper.demoList.length;
+      return this.$store.state.actionHelper.demoList.filter((e: any) => {
+        return e.archive === false;
+      }).length;
+    } else if (id == -2) {
+      return this.$store.state.actionHelper.demoList.filter((e: any) => {
+        return e.archive === true;
+      }).length;
     } else {
       return this.$store.state.actionHelper.demoList.filter((e: any) => {
-        return e.categoryId === id;
+        return e.archive === false && e.categoryId === id;
       }).length;
     }
   }
+
   selectCate(id: number): void {
     this.cateflag = false;
     this.$store.commit("setFilterId", id);
@@ -82,7 +93,7 @@ ul li span {
   display: flex;
   height: 35px;
   /* padding: 10px; */
-  width: 1250px;
+  width: 1600px;
   background: teal;
   position: fixed;
   right: 0;
