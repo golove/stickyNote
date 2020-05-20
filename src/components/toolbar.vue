@@ -93,7 +93,7 @@ ul li span {
   display: flex;
   height: 35px;
   /* padding: 10px; */
-  width: 1600px;
+  max-width: 1600px;
   background: teal;
   position: fixed;
   right: 0;

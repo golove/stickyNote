@@ -1,13 +1,19 @@
 
 import ItemData from '@/model/ItemData';
+import axios from 'axios'
 
 class RemoteHelper {
 
-    articles: Array<object>;
-    comments: Array<object>;
-    constructor() {
-        this.articles = this.reqArticle();
-        this.comments = this.reqComment();
+    articles: Array<any>;
+    constructor(api: string = "http://39.105.168.171:9600/myblog", json: object = {}) {
+        this.articles = this.reqArticle(api, json);
+    }
+
+    async makeAxios(api: string, json: object): Array<any> {
+        let res = await axios.post(api, json)
+        let data: Array<any> = res.data
+        return data
+
     }
 
     signin(api: string, json: object) { }
@@ -22,8 +28,9 @@ class RemoteHelper {
 
     updateUserInfo(api: string, json: object) { }
 
-    reqArticle() {
-        return []
+    reqArticle(api: string, json: object): Array<object> {
+        let res: Array<any> = this.makeAxios(api, json)
+        return res
     }
 
     submitArticle(api: string, json: object) { }

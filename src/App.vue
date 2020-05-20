@@ -21,7 +21,9 @@ declare module "vue/types/vue" {
 @Component({
   components: { toolbar, itemlist, inputbox }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  public article: Array<object> = this.$store.state.remoteHelper.articles;
+}
 </script>
 <style scoped>
 @import url("./assets/style.css");
