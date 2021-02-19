@@ -4,7 +4,10 @@
     <transition name="list-complete">
       <inputbox class="list-complete-item" v-if="$store.state.showInput" />
     </transition>
-    <itemlist class="noblur" :class="$store.state.showInput?'blurstyle':''" />
+    <itemlist
+      class="noblur"
+      :class="$store.state.showInput ? 'blurstyle' : ''"
+    />
   </div>
 </template>
 
@@ -19,7 +22,7 @@ declare module "vue/types/vue" {
   }
 }
 @Component({
-  components: { toolbar, itemlist, inputbox }
+  components: { toolbar, itemlist, inputbox },
 })
 export default class App extends Vue {
   public article: Array<object> = this.$store.state.remoteHelper.articles;

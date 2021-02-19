@@ -81,7 +81,7 @@ textarea {
 }
 
 .blurstyle {
-  filter: blur(23px);
+  filter: blur(5px);
 }
 
 .noblur {
