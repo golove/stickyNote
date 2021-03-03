@@ -2,7 +2,7 @@
 
 ## Project setup
 
-demo:[golove.github.io/stickynote/demo/](golove.github.io/stickynote/demo/)
+[demo](https://golove.github.io/stickyNote/demo/)
 
 ```
 yarn install
