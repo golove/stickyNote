@@ -1,11 +1,13 @@
 <template>
   <div class="itemlist">
+    <transition-group>
     <item
       class="listitem list-complete-item"
       v-for="(item) in filterData()"
       :key=" item.id"
       :item="item"
     />
+    </transition-group>
   </div>
 </template>
 

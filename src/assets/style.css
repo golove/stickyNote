@@ -62,7 +62,7 @@ textarea {
 }
 
 .list-complete-item {
-  transition: all 1s;
+  transition: all .3s ease;
   /* display: inline-block; */
   /* margin-right: 10px; */
 }
@@ -73,7 +73,7 @@ textarea {
 /* .list-complete-leave-active for below version 2.1.8 */
   {
   opacity: 0;
-  transform: translateY(-30px);
+  transform: translateY(-10px);
 }
 
 .list-complete-leave-active {
